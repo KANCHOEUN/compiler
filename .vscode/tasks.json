@@ -11,7 +11,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "gcc -g main.c y.tab.c lex.yy.c syntax_analysis.c print.c -m32 -w",
+            "command": "gcc -g main.c y.tab.c lex.yy.c syntax_analysis.c print.c semantic_analysis.c print_sem.c -m32 -w",
             "dependsOn": "Compile Yacc & Lex",
             "problemMatcher": [],
             "group": {
