@@ -397,6 +397,7 @@ A_TYPE *sem_expression(A_NODE *node)
             node->llink = convertUsualUnaryConversion(node->llink);
         else
             semantic_error(27, node->line);
+
         t = sem_expression(node->rlink);
         if (isScalarType(t))
             node->rlink = convertUsualUnaryConversion(node->rlink);
@@ -450,6 +451,7 @@ void sem_arg_expr_list(A_NODE *node, A_ID *id)
                     node->llink = convertCastingConversion(node->llink, id->type);
                 else
                     semantic_error(59, node->line);
+
                 sem_arg_expr_list(node->rlink, id->link);
             }
             else
@@ -1146,6 +1148,8 @@ A_LITERAL checkTypeAndConvertLiteral(A_LITERAL result, A_TYPE *t, int ll)
     return (result);
 }
 
+// 주어진 신택스 트리를 분석해서, 수식의 type과 value 계산
+// 리터럴 테이블 생성 후, 그 주소를 리턴
 A_LITERAL getTypeAndValueOfExpression(A_NODE *node)
 {
     A_TYPE *t;
@@ -1353,7 +1357,7 @@ void semantic_error(int i, int ll, char *s)
         printf("arithmetic type expression required in unary operation\n");
         break;
     case 18:
-        printf("illegal constant expression \n");
+        printf("illegal constant expression\n");
         break;
     case 19:
         printf("illegal identifier %s in constant expression\n", s);
@@ -1395,7 +1399,7 @@ void semantic_error(int i, int ll, char *s)
         printf("illegal type size in sizeof operation\n");
         break;
     case 40:
-        printf("illegal expression type in relational operation");
+        printf("illegal expression type in relational operation\n");
         break;
     //	case 41:
     //		printf("incompatible type in literal\n");
@@ -1420,13 +1424,13 @@ void semantic_error(int i, int ll, char *s)
         printf("not permitted type conversion in argument\n");
         break;
     case 60:
-        printf("expression is not an lvalue \n");
+        printf("expression is not an lvalue\n");
         break;
     case 71:
-        printf("case label not within a switch statement \n");
+        printf("case label not within a switch statement\n");
         break;
     case 72:
-        printf("default label not within a switch statement \n");
+        printf("default label not within a switch statement\n");
         break;
     case 73:
         printf("break statement not within loop or switch statement \n");
@@ -1454,7 +1458,7 @@ void semantic_error(int i, int ll, char *s)
         printf("invalid function return type\n");
         break;
     case 86:
-        printf("illegal array size or empty array \n");
+        printf("illegal array size or empty array\n");
         break;
     case 89:
         printf("unknown identifier kind: %s\n", s);
@@ -1464,7 +1468,7 @@ void semantic_error(int i, int ll, char *s)
         printf("fatal compiler error in parse result\n");
         break;
     case 93:
-        printf("too many literals in source program \n");
+        printf("too many literals in source program\n");
         break;
     default:
         printf("unknown \n");

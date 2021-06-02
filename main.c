@@ -3,20 +3,26 @@
 #include "type.h"
 
 extern int syntax_err;
+extern int semantic_err;
 extern A_NODE *root;
 
 void initialize();
 int yyparse();
 void print_ast();
+void print_sem_ast();
+void semantic_analysis();
 
 int main()
 {
     initialize();
     yyparse();
     if (syntax_err)
-    {
         exit(1);
-    }
     print_ast(root);
+
+    semantic_analysis(root);
+    if (semantic_err)
+        exit(1);
+    print_sem_ast(root);
     return 0;
 }
