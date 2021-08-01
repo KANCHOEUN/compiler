@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
-            "args": ["<", "sample10.c"],
+            "args": ["<", "./interpreter_test_case/test1.c"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
